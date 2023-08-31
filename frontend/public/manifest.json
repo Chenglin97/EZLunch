@@ -1,0 +1,9 @@
+{
+  "short_name": "EZLunch",
+  "name": "EZ Lunch App",
+  "icons": [{ "src": "logo.png", "sizes": "276x88", "type": "image/png" }],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

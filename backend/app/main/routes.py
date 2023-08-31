@@ -12,7 +12,9 @@ def register():
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
-
+    if(username is None or password is None or email is None):
+        return jsonify({'message': 'Missing required fields'}), 400
+    
     user = User(name=username, email=email, password=password)
     try:
         user.save()
