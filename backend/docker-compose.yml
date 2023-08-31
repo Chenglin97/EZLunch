@@ -8,4 +8,10 @@ services:
     expose:
       - "5000"
     volumes:
-      - ./app:/app
+      - .:/app
+    links:
+      - db
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
