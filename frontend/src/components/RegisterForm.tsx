@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import { Form, Input, Button } from "antd";
 import styles from "../styles/Form.module.css";
-import { Form, Input, Button, Checkbox } from "antd";
 
-const LoginForm = () => {
+const RegisterForm: React.FC = () => {
   return (
     <div>
-      <Form
-        className={styles.loginForm}
-        initialValues={{
-          remember: true,
-        }}
-      >
+      <Form className={styles.loginForm}>
         <Form.Item
           label="Username"
           name="username"
@@ -21,7 +15,19 @@ const LoginForm = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Choose a username" />
+        </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
+          <Input placeholder="Enter your email" />
         </Form.Item>
         <Form.Item
           label="Password"
@@ -33,18 +39,15 @@ const LoginForm = () => {
             },
           ]}
         >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox>Remember me</Checkbox>
+          <Input.Password placeholder="Choose a password" />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Login
+            Register
           </Button>
         </Form.Item>
       </Form>
     </div>
   );
 };
-export default LoginForm;
+export default RegisterForm;
