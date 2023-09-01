@@ -17,21 +17,18 @@ const RegisterForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      console.log({apiUrl})
-      const response = await fetch(
-        `${apiUrl}/api/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: values.username,
-            email: values.email,
-            password: values.password,
-          }),
-        }
-      );
+      console.log({ apiUrl });
+      const response = await fetch(`${apiUrl}/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: values.username,
+          email: values.email,
+          password: values.password,
+        }),
+      });
 
       const data = await response.json();
 
@@ -55,7 +52,9 @@ const RegisterForm: React.FC = () => {
           <div className={styles.errorMessage}>{errorMessage}</div>
         )}
         <Form.Item
-          label="Username"
+          style={{
+            minWidth: 300,
+          }}
           name="username"
           rules={[
             {
@@ -68,10 +67,12 @@ const RegisterForm: React.FC = () => {
             // }
           ]}
         >
-          <Input placeholder="Choose a username" />
+          <Input placeholder="Username" />
         </Form.Item>
         <Form.Item
-          label="Email"
+          style={{
+            minWidth: 300,
+          }}
           name="email"
           rules={[
             {
@@ -84,10 +85,12 @@ const RegisterForm: React.FC = () => {
             // }
           ]}
         >
-          <Input placeholder="Enter your email" />
+          <Input placeholder="Email" />
         </Form.Item>
         <Form.Item
-          label="Password"
+          style={{
+            minWidth: 300,
+          }}
           name="password"
           rules={[
             {
@@ -97,10 +100,10 @@ const RegisterForm: React.FC = () => {
             // {
             //   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
             //   message: "Password must be 8 characters long and contain one uppercase, one lowercase, one number, and one special character.",
-            // } 
+            // }
           ]}
         >
-          <Input.Password placeholder="Choose a password" />
+          <Input.Password placeholder="Password" />
         </Form.Item>
         <Form.Item>
           <Button
