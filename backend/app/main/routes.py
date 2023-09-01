@@ -37,3 +37,38 @@ def login():
         return jsonify({'message': 'Incorrect password'}), 401
     return jsonify({'message': 'User logged in'})
     
+@main.route('/subscribe', methods=['POST'])
+def subscribe():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        user = User.objects(name=username).first()
+        if user is None:
+            return jsonify({'message': 'Subscribe failed: User not found'}), 404
+        
+        if user.subscribed:
+            return jsonify({'message': 'Subscribe failed: User already subscribed'}), 409
+            
+        user.subscribed = True
+        user.save()
+        return jsonify({'message': 'User subscribed'})
+    except:
+        return jsonify({'message': 'Subscribe failed'}), 500
+    
+@main.route('/unsubscribe', methods=['POST'])
+def unsubscribe():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+        user = User.objects(name=username).first()
+        if user is None:
+            return jsonify({'message': 'Unsubscribe failed: User not found'}), 404
+        
+        if not user.subscribed:
+            return jsonify({'message': 'Unsubscribe failed: User not subscribed'}), 409
+
+        user.subscribed = False
+        user.save()
+        return jsonify({'message': 'User unsubscribed'})
+    except:
+        return jsonify({'message': 'Unsubscribe failed'}), 500
