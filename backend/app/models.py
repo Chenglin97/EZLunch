@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, BooleanField, ObjectField, ArrayField
+from mongoengine import Document, StringField, BooleanField, DictField, ListField
 
 class User(Document):
     username = StringField(unique=True, required=True)
@@ -9,7 +9,7 @@ class User(Document):
 class Subscription(Document):
     username = StringField(unique=True, required=True)
     isActive = BooleanField(default=False)
-    preference = ObjectField(default=None)
-    address = ObjectField(default=None)
-    orderHistory = ArrayField(ObjectField(), default=None)
+    preference = DictField(default=None)
+    address = DictField(default=None)
+    orderHistory = ListField(DictField(), default=None)
     

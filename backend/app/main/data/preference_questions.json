@@ -1,0 +1,145 @@
+{
+  "questions": {
+    "page_1": {
+      "title": "Cuisine Preferences",
+      "questions": {
+        "question_1": {
+          "title": "How much do you like American food?",
+          "type": "rating"
+        },
+        "question_2": {
+          "title": "How much do you like Italian food?",
+          "type": "rating"
+        },
+        "question_3": {
+          "title": "How much do you like Mexican food?",
+          "type": "rating"
+        },
+        "question_4": {
+          "title": "How much do you like Chinese food?",
+          "type": "rating"
+        },
+        "question_5": {
+          "title": "How much do you like Japanese food?",
+          "type": "rating"
+        },
+        "question_6": {
+          "title": "How much do you like Thai food?",
+          "type": "rating"
+        },
+        "question_7": {
+          "title": "How much do you like Indian food?",
+          "type": "rating"
+        },
+        "question_8": {
+          "title": "How much do you like French food?",
+          "type": "rating"
+        }
+      }
+    },
+    "page_2": {
+      "title": "Ingredients Preferences",
+      "questions": {
+        "question_1": {
+          "title": "How much do you like chicken?",
+          "type": "rating"
+        },
+        "question_2": {
+          "title": "How much do you like beef?",
+          "type": "rating"
+        },
+        "question_3": {
+          "title": "How much do you like pork?",
+          "type": "rating"
+        },
+        "question_4": {
+          "title": "How much do you like fish?",
+          "type": "rating"
+        },
+        "question_5": {
+          "title": "How much do you like tofu?",
+          "type": "rating"
+        },
+        "question_6": {
+          "title": "How much do you like eggs?",
+          "type": "rating"
+        }
+      }
+    },
+    "page_3": {
+      "title": "Dish Preferences",
+      "questions": {
+        "question_1": {
+          "title": "How much do you like salad?",
+          "type": "rating"
+        },
+        "question_2": {
+          "title": "How much do you like sandwich?",
+          "type": "rating"
+        },
+        "question_3": {
+          "title": "How much do you like rice bowl?",
+          "type": "rating"
+        },
+        "question_4": {
+          "title": "How much do you like burgers?",
+          "type": "rating"
+        },
+        "question_5": {
+          "title": "How much do you like pizza?",
+          "type": "rating"
+        }
+      }
+    },
+    "page_4": {
+      "title": "Dietary Restrictions",
+      "questions": {
+        "question_1": {
+          "title": "Do you have any dietary restrictions?",
+          "type": "checkbox",
+          "options": {
+            "option_1": {
+              "title": "Vegetarian"
+            },
+            "option_2": {
+              "title": "Vegan"
+            },
+            "option_3": {
+              "title": "Gluten Free"
+            },
+            "option_4": {
+              "title": "Kosher"
+            },
+            "option_5": {
+              "title": "Halal"
+            },
+            "option_6": {
+              "title": "Other"
+            }
+          }
+        },
+        "question_2": {
+          "title": "Do you have any food allergies?",
+          "type": "checkbox",
+          "options": {
+            "option_1": {
+              "title": "Peanuts"
+            },
+            "option_2": {
+              "title": "Dairy"
+            },
+            "option_3": {
+              "title": "Eggs"
+            },
+            "option_4": {
+              "title": "Shellfish"
+            },
+            "option_5": {
+              "title": "Other"
+            }
+          }
+        }
+      }
+    }
+  }
+}

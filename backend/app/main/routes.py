@@ -87,3 +87,22 @@ def users():
         return jsonify({'users': [json.loads(user.to_json()) for user in users]})
     except:
         return jsonify({'message': 'Failed to get users'}), 500
+
+@main.route('/user/<username>', methods=['GET'])
+def user(username):
+    try:
+        user = User.objects(name=username).first()
+        if user is None:
+            return jsonify({'message': 'User not found'}), 404
+        return jsonify(json.loads(user.to_json()))
+    except:
+        return jsonify({'message': 'Failed to get user'}), 500
+
+@main.route('/preference/questions', methods=['GET'])
+def preference_questions():
+    try:
+        with open('app/main/data/preference_questions.json') as f:
+            questions = json.load(f)
+        return jsonify({'questions': questions})
+    except:
+        return jsonify({'message': 'Failed to get preference questions'}), 500
