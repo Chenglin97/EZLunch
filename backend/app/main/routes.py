@@ -16,9 +16,8 @@ def register():
         email = data.get('email')
         if(username is None or password is None or email is None):
             return jsonify({'message': 'Missing required fields'}), 400
-        
-        user = User(username=username, email=email, password=password)
         try:
+            user = User(username=username, email=email, password=password)
             user.save()
         except Exception as e:
             app.logger.error(e)
@@ -41,7 +40,8 @@ def login():
         if user.password != password:
             return jsonify({'message': 'Incorrect password'}), 401
         return jsonify({'message': 'User logged in'})
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Login failed'}), 500
     
 @main.route('/subscribe', methods=['POST'])
@@ -59,7 +59,8 @@ def subscribe():
         user.subscribed = True
         user.save()
         return jsonify({'message': 'User subscribed'})
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Subscribe failed'}), 500
     
 @main.route('/unsubscribe', methods=['POST'])
@@ -77,7 +78,8 @@ def unsubscribe():
         user.subscribed = False
         user.save()
         return jsonify({'message': 'User unsubscribed'})
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Unsubscribe failed'}), 500
     
 @main.route('/users', methods=['GET'])
@@ -85,7 +87,8 @@ def users():
     try:
         users = User.objects()
         return jsonify({'users': [json.loads(user.to_json()) for user in users]})
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Failed to get users'}), 500
 
 @main.route('/user/<username>', methods=['GET'])
@@ -95,7 +98,8 @@ def user(username):
         if user is None:
             return jsonify({'message': 'User not found'}), 404
         return jsonify(json.loads(user.to_json()))
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Failed to get user'}), 500
 
 @main.route('/preference/questions', methods=['GET'])
@@ -104,5 +108,6 @@ def preference_questions():
         with open('app/main/data/preference_questions.json') as f:
             questions = json.load(f)
         return jsonify({'questions': questions})
-    except:
+    except Exception as e:
+        app.logger.error(e)
         return jsonify({'message': 'Failed to get preference questions'}), 500
