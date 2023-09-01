@@ -53,10 +53,6 @@ const LoginForm = () => {
               required: true,
               message: "Please input your username!",
             },
-            {
-              pattern: /^[a-zA-Z0-9_-]{3,16}$/,
-              message: "Username must be 3-16 characters, and can include numbers, underscores, and hyphens.",
-            }
           ]}
         >
           <Input />
@@ -69,10 +65,6 @@ const LoginForm = () => {
               required: true,
               message: "Please input your password!",
             },
-            {
-              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-              message: "Password must be 8 characters long and contain one uppercase, one lowercase, one number, and one special character.",
-            }
           ]}
         >
           <Input.Password />
