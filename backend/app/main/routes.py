@@ -17,7 +17,7 @@ def register():
         if(username is None or password is None or email is None):
             return jsonify({'message': 'Missing required fields'}), 400
         
-        user = User(name=username, email=email, password=password)
+        user = User(username=username, email=email, password=password)
         try:
             user.save()
         except Exception as e:
@@ -35,7 +35,7 @@ def login():
         username = data.get('username')
         password = data.get('password')
 
-        user = User.objects(name=username).first()
+        user = User.objects(username=username).first()
         if user is None:
             return jsonify({'message': 'User not found'}), 404
         if user.password != password:
@@ -49,7 +49,7 @@ def subscribe():
     try:
         data = request.get_json()
         username = data.get('username')
-        user = User.objects(name=username).first()
+        user = User.objects(username=username).first()
         if user is None:
             return jsonify({'message': 'Subscribe failed: User not found'}), 404
         
@@ -67,7 +67,7 @@ def unsubscribe():
     try:
         data = request.get_json()
         username = data.get('username')
-        user = User.objects(name=username).first()
+        user = User.objects(username=username).first()
         if user is None:
             return jsonify({'message': 'Unsubscribe failed: User not found'}), 404
         
@@ -91,7 +91,7 @@ def users():
 @main.route('/user/<username>', methods=['GET'])
 def user(username):
     try:
-        user = User.objects(name=username).first()
+        user = User.objects(username=username).first()
         if user is None:
             return jsonify({'message': 'User not found'}), 404
         return jsonify(json.loads(user.to_json()))
