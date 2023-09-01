@@ -1,6 +1,7 @@
 from flask import request, jsonify, current_app as app
 from . import main
 from ..models import User
+import json
 
 @main.route('/')
 def home():
@@ -78,3 +79,11 @@ def unsubscribe():
         return jsonify({'message': 'User unsubscribed'})
     except:
         return jsonify({'message': 'Unsubscribe failed'}), 500
+    
+@main.route('/users', methods=['GET'])
+def users():
+    try:
+        users = User.objects()
+        return jsonify({'users': [json.loads(user.to_json()) for user in users]})
+    except:
+        return jsonify({'message': 'Failed to get users'}), 500
