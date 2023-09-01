@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import styles from "../styles/Form.module.css";
 
 const RegisterForm: React.FC = () => {
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const handleRegister = async (values: {
@@ -15,8 +17,9 @@ const RegisterForm: React.FC = () => {
     setErrorMessage(null);
 
     try {
+      console.log({apiUrl})
       const response = await fetch(
-        "YOUR_BACKEND_API_ENDPOINT_FOR_REGISTRATION",
+        `${apiUrl}/api/register`,
         {
           method: "POST",
           headers: {
@@ -59,10 +62,10 @@ const RegisterForm: React.FC = () => {
               required: true,
               message: "Please input your username!",
             },
-            {
-              pattern: /^[a-zA-Z0-9_-]{3,16}$/,
-              message: "Username must be 3-16 characters, and can include numbers, underscores, and hyphens.",
-            }
+            // {
+            //   pattern: /^[a-zA-Z0-9_-]{3,16}$/,
+            //   message: "Username must be 3-16 characters, and can include numbers, underscores, and hyphens.",
+            // }
           ]}
         >
           <Input placeholder="Choose a username" />
@@ -75,10 +78,10 @@ const RegisterForm: React.FC = () => {
               required: true,
               message: "Please input your email!",
             },
-            {
-              type: 'email',
-              message: 'The input is not a valid email!',
-            }
+            // {
+            //   type: 'email',
+            //   message: 'The input is not a valid email!',
+            // }
           ]}
         >
           <Input placeholder="Enter your email" />
@@ -91,10 +94,10 @@ const RegisterForm: React.FC = () => {
               required: true,
               message: "Please input your password!",
             },
-            {
-              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-              message: "Password must be 8 characters long and contain one uppercase, one lowercase, one number, and one special character.",
-            }
+            // {
+            //   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            //   message: "Password must be 8 characters long and contain one uppercase, one lowercase, one number, and one special character.",
+            // } 
           ]}
         >
           <Input.Password placeholder="Choose a password" />
