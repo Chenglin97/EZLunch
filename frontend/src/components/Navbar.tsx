@@ -1,32 +1,36 @@
-import { useParams } from 'react-router-dom';
-import "../App.css";
+// NavBar.tsx
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, useMediaQuery, useTheme } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-const Navbar = () => {
-  const { lang } = useParams<{ lang: string }>();
+const NavBar: React.FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isLoggedIn = useSelector((state: any) => state.login.isLoggedIn);
 
   return (
-    <div className="top-navbar">
-      <div>
-        <a href={`/${lang || 'en'}/`}>Home</a>
-      </div>
-      <div>
-        <a href={`/${lang || 'en'}/login`}>Login</a>
-      </div>
-      <div className="language-switcher">
-        <span>Language: </span>
-        <a href={replaceLang('/en')}>English</a> | 
-        <a href={replaceLang('/zh')}>Chinese</a>
-      </div>
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <a href="/">EZLunch</a>
+        </Typography>
+        {!isMobile && (
+          <>
+            <Button color="inherit" href="/">Home</Button>
+            {isLoggedIn ? (
+              <Button color="inherit" href="/profile">My Profile</Button>
+            ) : (
+              <Button color="inherit" href="/login">Login</Button>
+            )}
+          </>
+        )}
+        {isMobile && (
+          <Typography variant="body1">Menu</Typography>
+          // Future implementation: Dropdown or slide menu for mobile view
+        )}
+      </Toolbar>
+    </AppBar>
   );
-
-  // Utility function to replace or append language in the current path
-  function replaceLang(newLang: string) {
-    if (lang) {
-      return window.location.pathname.replace(`/${lang}`, newLang);
-    }
-    return newLang + window.location.pathname;
-  }
 };
 
-export default Navbar;
+export default NavBar;

@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 
-const RegisterPage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
-    if (!username || !password || !email) {
+    if (!username || !password) {
       setError('Please fill in all fields');
       return;
     }
 
-    // Placeholder for registration logic
-    console.log('Registering with:', username, password, email);
+    // Placeholder for authentication logic
+    console.log('Logging in with:', username, password);
   };
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh">
       <Typography variant="h4" gutterBottom>
-        Register for EZLunch
+        Login to EZLunch
       </Typography>
-      <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
+      <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
         <TextField
           margin="normal"
           required
@@ -42,23 +41,11 @@ const RegisterPage: React.FC = () => {
           margin="normal"
           required
           fullWidth
-          name="email"
-          label="Email"
-          type="email"
-          id="email"
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
           name="password"
           label="Password"
           type="password"
           id="password"
-          autoComplete="new-password"
+          autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -73,11 +60,11 @@ const RegisterPage: React.FC = () => {
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Register
+          Login
         </Button>
       </Box>
     </Box>
   );
 };
 
-export default RegisterPage;
+export default ProfilePage;
