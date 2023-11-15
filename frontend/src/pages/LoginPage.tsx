@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
+import { TextField, Button, Box, Typography, Link } from '@mui/material';
+import NavBar from '../components/Navbar';
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,9 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh">
+    <>
+    <NavBar></NavBar>
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="80vh">
       <Typography variant="h4" gutterBottom>
         Login to EZLunch
       </Typography>
@@ -63,7 +66,11 @@ const LoginPage: React.FC = () => {
           Login
         </Button>
       </Box>
+      <Typography variant="body1" sx={{ mt: 2 }}>
+          Don't have an account? <Link href="/register" color="primary">Sign Up</Link>
+        </Typography>
     </Box>
+    </>
   );
 };
 

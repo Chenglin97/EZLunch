@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
+import NavBar from '../components/Navbar';
 
 const ProfilePage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,9 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="100vh">
+    <>
+    <NavBar></NavBar>
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minHeight="80vh">
       <Typography variant="h4" gutterBottom>
         Login to EZLunch
       </Typography>
@@ -64,6 +67,7 @@ const ProfilePage: React.FC = () => {
         </Button>
       </Box>
     </Box>
+    </>
   );
 };
 
